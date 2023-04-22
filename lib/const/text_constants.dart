@@ -3,22 +3,23 @@ class TextConstants {
   static const String start = "Start";
   static const String done = "Done";
   static const String next = "Next";
+  static const String skip = "Skip";
 
 
   // Onboarding
-  static const String onboarding1Title = "Networking Platform for moms";
-  static const String onboarding2Title = "A Safe Haven for moms";
-  static const String onboarding3Title = "Save for your Childs Future";
-  static const String onboarding4Title = "Access to tools and support";
+  static const String onboarding1Title = "Networking Platform for Moms Across the Globe";
+  static const String onboarding2Title = "A Safe Haven for Moms";
+  static const String onboarding3Title = "Exclusive Member Discounts";
+  static const String onboarding4Title = "Mom's Support and  Parenting Tools";
 
   static const String onboarding1Description =
-      "Networking Platform for moms with common factors (location, number of kids, interests etc.)";
+      "Networking Platform for moms with common factors (location, number of kids,interests, etc.)";
   static const String onboarding2Description =
-      "A safe haven to share and learn on different areas of intentional parenting.";
+      "A safe haven to share and learn on different areas of intentional parenting";
   static const String onboarding3Description =
-      "Exclusive cost saving deals for members' of the mom's community";
+      "Exclusive cost-saving deals on mom-child products and services from vendors across the globe.";
   static const String onboarding4Description =
-      "Support that increases a mom's chances of success at raising a child to become a happy adult";
+      "Access to tools and support that increases a mom’s chances of success at raising her kids to becoming all-rounded humans";
 
   // Sign Up
   static const String signUp = "Sign Up";
@@ -70,7 +71,11 @@ class TextConstants {
   static const String kprofileIcon = "Profile";
 
   // Home screen
-  static const String kheaderText = "Hey Moma!";
+  static const String kheaderText = "Hey Moma! \nAre you new here?\n";
+
+  static const String kheaderText1 = "Are you new here?";
+
+  static const String subtitle = "Sign up if you don’t have an account or Login if you have an account.";
   static const String ktab1 = "Vendors";
   static const String ktab2 = "Nearby";
 

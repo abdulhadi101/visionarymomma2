@@ -5,7 +5,8 @@ class PathConstants {
   static const String onboarding3 = 'assets/images/onboarding/momma3.png';
   static const String onboarding4 = 'assets/images/onboarding/momma4.png';
   static const String onboarding5 = 'assets/images/onboarding/momma5.png';
-
+  // Logo
+  static const String logo = 'assets/images/vlogo.png';
   // Auth
   static const String eye = 'assets/images/auth/eye_icon.png';
 
