@@ -7,6 +7,7 @@ class PathConstants {
   static const String onboarding5 = 'assets/images/onboarding/momma5.png';
   // Logo
   static const String logo = 'assets/images/vlogo.png';
+  static const String logo_name = 'assets/images/vlogo_name.png';
   // Auth
   static const String eye = 'assets/images/auth/eye_icon.png';
 

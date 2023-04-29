@@ -41,7 +41,7 @@ class TextConstants {
   static const String email = "Email";
   static const String emailPlaceholder = "Email";
   static const String emailErrorText =
-      'Email is unvalid, please enter email properly';
+      'Email is invalid, please enter email properly';
 
   static const String password = "Password";
   static const String passwordPlaceholder = "Must be at least 6 characters";
@@ -75,7 +75,7 @@ class TextConstants {
 
   static const String kheaderText1 = "Are you new here?";
 
-  static const String subtitle = "Sign up if you don’t have an account or Login if you have an account.";
+  static const String subtitle = "\nSign up if you don’t have an account or Login if you have an account.";
   static const String ktab1 = "Vendors";
   static const String ktab2 = "Nearby";
 

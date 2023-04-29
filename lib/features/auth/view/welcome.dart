@@ -1,18 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:visionarymomma/common/vbuttons.dart';
 import 'package:visionarymomma/const/constants.dart';
+import 'package:visionarymomma/features/auth/view/sign_in.dart';
+import 'package:visionarymomma/features/auth/view/sign_up.dart';
 
 
-class HomePage extends StatefulWidget {
-  static const String path = "lib/src/pages/onboarding/intro6.dart";
+class WelcomePage extends StatefulWidget {
+  static route() => MaterialPageRoute(
+    builder: (context) => const WelcomePage(),
+  );
 
-  const HomePage({super.key});
+  const WelcomePage({super.key});
   @override
-  _HomePageState createState() => _HomePageState();
+  _WelcomePageState createState() => _WelcomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
 
+class _WelcomePageState extends State<WelcomePage> {
+
+@override
+void initState() {
+  SystemChannels.textInput.invokeMethod('TextInput.hide');
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,14 +34,14 @@ class _HomePageState extends State<HomePage> {
       body: Container(
 
       //  alignment: Alignment.topLeft,
-       padding: const EdgeInsets.symmetric(horizontal: 28, vertical: 16.0),
+       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 32.0),
         child: Column(
           mainAxisSize: MainAxisSize.max,
           crossAxisAlignment: CrossAxisAlignment.start,
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
 
-            const SizedBox(height: 50,),
+            const SizedBox(height: 10,),
 
               Column(
 
@@ -40,6 +51,7 @@ class _HomePageState extends State<HomePage> {
                 Image.asset(PathConstants.logo, alignment: Alignment.topLeft, height: 32.0, width: 42.0,),
                     const SizedBox(height: 30,),
 
+
                 RichText(
 
                   text:  TextSpan(text: TextConstants.kheaderText, style: headingTextStyle2 , children:
@@ -47,7 +59,12 @@ class _HomePageState extends State<HomePage> {
                   [TextSpan(text: TextConstants.subtitle,  style: kBodyTextStyle2, )]
 
                   ),  ),
-              ]),
+
+                    const SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
+                    const SizedBox(height: 10,),
+
+                  ],),
 
 
             Row(
@@ -56,10 +73,16 @@ class _HomePageState extends State<HomePage> {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Expanded(child:
-                PrimaryButton(onTap: (){}, title: 'Sign up here', ),),
+                PrimaryButton(onTap: (){
+                  Navigator.of(context).pushReplacement(SignUp.route());
+                }, title: 'Sign up here', ),),
                 const SizedBox(width: 20.0,),
                 Expanded(child:
-                PrimaryButton(onTap: (){}, title: 'Continue to Login', ),)
+                PrimaryButton(onTap: (){
+
+                 Navigator.of(context).pushReplacement(SignIn.route());
+
+                }, title: 'Continue to Login', ),)
               ],
             )
 

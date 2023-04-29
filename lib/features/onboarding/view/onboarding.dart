@@ -3,11 +3,12 @@ import 'package:visionarymomma/common/vbuttons.dart';
 import 'package:visionarymomma/const/constants.dart';
 import 'package:flutter_swiper_null_safety/flutter_swiper_null_safety.dart';
 import 'package:flutter_custom_clippers/flutter_custom_clippers.dart';
+import 'package:visionarymomma/features/auth/view/welcome.dart';
 import 'package:visionarymomma/features/onboarding/widgets/onboard_image.dart';
 import 'package:visionarymomma/main.dart';
 
 class OnboardingPage extends StatefulWidget {
-  static const String path = "lib/src/pages/onboarding/intro6.dart";
+
 
   const OnboardingPage({super.key});
   @override
@@ -90,11 +91,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                     ),
                     onPressed: () {
                       Navigator.of(context).pushReplacement(
-                        MaterialPageRoute(
-                          builder: (_) {
-                            return const MyHomePage(title: 'Flutter Demo Home Page');
-                          },
-                        ),
+                          WelcomePage.route()
                       );
                     },
                   ),),
@@ -106,11 +103,7 @@ class _OnboardingPageState extends State<OnboardingPage> {
                         _controller.next();
                       } else {
                         Navigator.of(context).pushReplacement(
-                          MaterialPageRoute(
-                            builder: (_) {
-                              return const MyHomePage(title: 'Flutter Demo Home Page');
-                            },
-                          ),
+                            WelcomePage.route()
                         );
                       }
                     },

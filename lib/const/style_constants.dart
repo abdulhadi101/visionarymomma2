@@ -46,6 +46,11 @@ TextStyle tabTitleTextStyle = GoogleFonts.roboto(
   fontWeight: FontWeight.w500,
 );
 
+TextStyle normalTextWhite = GoogleFonts.roboto(
+  fontSize: 14,
+  color: ColorConstants.white,
+  fontWeight: FontWeight.w400,
+);
 
 TextStyle headingTextStyle = GoogleFonts.sora(
   fontSize: 24,
@@ -90,5 +95,7 @@ TextStyle kBodyTextStyle2 = GoogleFonts.roboto(
 
 const klabelTextStyle2 =
 TextStyle(color: Colors.white, fontSize: 16.0, fontWeight: FontWeight.w900);
-const klabelTextStyle3 = TextStyle(fontSize: 25.0, fontWeight: FontWeight.bold);
+const klabelTextStyle3 = TextStyle(
+    color: ColorConstants.primaryColor,
+    fontSize: 25.0, fontWeight: FontWeight.w700);
 const klabelTextStyle4 = TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold);

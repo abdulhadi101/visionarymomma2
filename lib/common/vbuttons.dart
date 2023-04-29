@@ -2,11 +2,15 @@ import 'package:flutter/material.dart';
 import 'package:visionarymomma/const/color_constants.dart';
 
 class PrimaryButton extends StatelessWidget {
+  final Color bgColor;
+  final Color textColor;
   final String title;
   final bool isEnabled;
   final Function() onTap;
   const PrimaryButton(
       {Key? key,
+        this.bgColor = ColorConstants.thirdColor,
+        this.textColor = ColorConstants.primaryColor,
         required this.title,
         this.isEnabled = true,
         required this.onTap})
@@ -19,7 +23,7 @@ class PrimaryButton extends StatelessWidget {
       height: 55,
       decoration: isEnabled
           ? BoxDecoration(
-        color: ColorConstants.thirdColor,
+        color: bgColor,
         borderRadius: BorderRadius.circular(100),
       )
           : BoxDecoration(
@@ -38,8 +42,8 @@ class PrimaryButton extends StatelessWidget {
           child: Center(
             child: Text(
               title,
-              style: const TextStyle(
-                color: ColorConstants.primaryColor,
+              style:  TextStyle(
+                color: textColor,
                 fontSize: 14,
                 fontWeight: FontWeight.w500,
               ),
@@ -54,12 +58,16 @@ class PrimaryButton extends StatelessWidget {
 class PrimaryButtonWithIcon extends StatelessWidget {
   final String title;
   final bool isEnabled;
+  final Color bgColor;
+  final Color textColor;
   final Icon icon;
   final Function() onTap;
   const PrimaryButtonWithIcon(
       {Key? key,
         required this.title,
-        this.icon = const Icon(Icons.arrow_forward),
+        this.bgColor = ColorConstants.thirdColor,
+        this.textColor = ColorConstants.primaryColor,
+        this.icon = const Icon(Icons.arrow_forward, color: ColorConstants.primaryColor,),
         this.isEnabled = true,
         required this.onTap})
       : super(key: key);
@@ -89,15 +97,18 @@ class PrimaryButtonWithIcon extends StatelessWidget {
           onTap: onTap,
           child: Center(
             child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Text(
                   title,
-                  style: const TextStyle(
-                    color: ColorConstants.white,
+                  style:  TextStyle(
+                    color: textColor,
                     fontSize: 14,
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                const SizedBox(width: 10,),
                 icon,
               ],
             ),
@@ -128,6 +139,7 @@ class SecondaryButton extends StatelessWidget {
       height: 55,
       decoration: isEnabled
           ? BoxDecoration(
+        border: Border.all(color: ColorConstants.textColorGrey),
         color: color,
         borderRadius: BorderRadius.circular(100),
       )

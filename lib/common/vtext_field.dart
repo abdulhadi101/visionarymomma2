@@ -7,6 +7,7 @@ class VTextField extends StatefulWidget {
   final String placeholder;
   final String errorText;
   final bool obscureText;
+  final bool isInfo;
   final bool isError;
   final TextEditingController controller;
   final VoidCallback onTextChanged;
@@ -17,6 +18,7 @@ class VTextField extends StatefulWidget {
     required this.placeholder,
     this.obscureText = false,
     this.isError = false,
+    this.isInfo = false,
     required this.controller,
     required this.onTextChanged,
     required this.errorText,
@@ -34,6 +36,8 @@ class VTextFieldState extends State<VTextField> {
   bool stateObscureText = false;
   bool stateIsError = false;
 
+  bool stateIsInfo = false;
+
   @override
   void initState() {
     super.initState();
@@ -50,12 +54,13 @@ class VTextFieldState extends State<VTextField> {
 
     stateObscureText = widget.obscureText;
     stateIsError = widget.isError;
+    stateIsInfo = widget.isInfo;
   }
 
   @override
   void didUpdateWidget(covariant VTextField oldWidget) {
     super.didUpdateWidget(oldWidget);
-
+    stateIsInfo = widget.isInfo;
     stateObscureText = widget.obscureText;
     stateIsError = focusNode.hasFocus ? false : widget.isError;
   }
@@ -63,8 +68,9 @@ class VTextFieldState extends State<VTextField> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      color: Colors.transparent,
       width: double.infinity,
-      padding: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.symmetric(horizontal: 0.0),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -81,6 +87,7 @@ class VTextFieldState extends State<VTextField> {
 
   Widget _createTextFieldStack() {
     return Stack(
+
       children: [
         _createTextField(),
         if (widget.obscureText) ...[
@@ -98,6 +105,7 @@ class VTextFieldState extends State<VTextField> {
   Widget _createTextField() {
     return TextField(
 
+
       focusNode: focusNode,
       controller: widget.controller,
       obscureText: stateObscureText,
@@ -105,8 +113,7 @@ class VTextFieldState extends State<VTextField> {
       keyboardType: widget.keyboardType,
 
       style: const TextStyle(
-        color: ColorConstants.textColor,
-
+        color: ColorConstants.primaryColor,
         fontSize: 16,
       ),
       decoration: InputDecoration(
@@ -119,19 +126,19 @@ class VTextFieldState extends State<VTextField> {
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(100.0),
           borderSide: const BorderSide(
-            color: ColorConstants.primaryColor,
+            color: ColorConstants.textGrey,
           ),
         ),
         hintText: widget.placeholder,
         hintStyle: const TextStyle(
 
-          color: ColorConstants.textColorGrey,
+          color: ColorConstants.textGrey,
           fontSize: 16,
         ),
         filled: true,
-        fillColor: ColorConstants.textFieldBackground,
+        fillColor: Colors.transparent,
       ),
       onChanged: (text) {
         setState(() {});
@@ -161,12 +168,22 @@ class VTextFieldState extends State<VTextField> {
   Widget _createError() {
     return Container(
       padding: const EdgeInsets.only(top: 2),
-      child: Text(
-        widget.errorText,
-        style: const TextStyle(
-          fontSize: 14,
-          color: ColorConstants.errorColor,
-        ),
+      child: Row(
+        children: [
+           Icon(  stateIsInfo ?  Icons.info_outline :  Icons.cancel, color: stateIsInfo ? ColorConstants.white: ColorConstants.errorColor,),
+         const SizedBox(width: 8.0,),
+          Flexible(
+
+            child: Text(
+              widget.errorText,
+              style:  TextStyle(
+                overflow: TextOverflow.visible,
+                fontSize: 12,
+                color: stateIsInfo ? ColorConstants.white: ColorConstants.errorColor,
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }

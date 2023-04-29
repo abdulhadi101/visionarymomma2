@@ -16,6 +16,5 @@ class OnboardImage extends StatelessWidget {
         image,
         fit: BoxFit.cover,
       );
-
   }
 }
