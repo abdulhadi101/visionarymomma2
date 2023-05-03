@@ -5,6 +5,7 @@ import 'package:visionarymomma/common/vbuttons.dart';
 
 import 'package:visionarymomma/const/constants.dart';
 import 'package:visionarymomma/features/auth/controller/auth_controller.dart';
+import 'package:visionarymomma/features/auth/view/registration_page.dart';
 
 
 
@@ -20,6 +21,7 @@ final inputDecoration = InputDecoration(
   focusedBorder: inputBorder,
   enabledBorder: inputBorder,
 );
+
 
 
 class AuthOTPPage extends  ConsumerStatefulWidget {
@@ -42,6 +44,17 @@ class _AuthOTPPageState extends   ConsumerState<AuthOTPPage> {
   FocusNode? pin6FN;
   final pinStyle = const TextStyle(fontSize: 32, fontWeight: FontWeight.bold);
 
+   String? userEmail ="null";
+
+
+  void getUserEmail () async {
+
+    final user = await ref.read(authControllerProvider.notifier).currentUser();
+    userEmail = user?.email;
+
+  }
+
+
   @override
   void initState() {
     super.initState();
@@ -50,6 +63,7 @@ class _AuthOTPPageState extends   ConsumerState<AuthOTPPage> {
     pin4FN = FocusNode();
     pin5FN = FocusNode();
     pin6FN = FocusNode();
+    getUserEmail();
   }
 
   @override
@@ -72,6 +86,7 @@ class _AuthOTPPageState extends   ConsumerState<AuthOTPPage> {
   @override
   Widget build(BuildContext context) {
     final isLoading = ref.watch(authControllerProvider);
+
     return Scaffold(
 
       backgroundColor: ColorConstants.secondaryColor,
@@ -99,12 +114,16 @@ class _AuthOTPPageState extends   ConsumerState<AuthOTPPage> {
                   const SizedBox(
                     height: 30,
                   ),
-                  Text("Let’s start with your email address and password",
+                  Text("Enter the OTP sent to your email",
                       style: headingTextStyle1),
                   const SizedBox(
                     height: 30,
                   ),
-
+                  Text("We sent an OTP code to $userEmail verify to proceed",
+                      style: kTitleTextStyle),
+                  const SizedBox(
+                    height: 30,
+                  ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
@@ -191,7 +210,9 @@ class _AuthOTPPageState extends   ConsumerState<AuthOTPPage> {
 
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 64.0),
-                    child: PrimaryButtonWithIcon(title: "Continue", onTap: (){},),
+                    child: PrimaryButtonWithIcon(title: "Continue", onTap: (){
+                      Navigator.pushReplacement(context, RegistrationPage.route());
+                    },),
                   ),
                   const SizedBox(
                     height: 30,

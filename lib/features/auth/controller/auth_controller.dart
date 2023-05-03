@@ -35,8 +35,7 @@ class AuthController extends StateNotifier<bool> {
 
   Future<User?> currentUser() => _authRepository.currentUserAccount();
 
-  String errorMessage ="";
-
+  String errorMessage = "";
 
   void signUp({
     required String email,
@@ -61,7 +60,7 @@ class AuthController extends StateNotifier<bool> {
           country: "",
           state: "",
           city: "",
-          maternalStatus: "",
+          maternalStatus: false,
           inviterCode: "",
           vmommaCode: "",
           connections: const [],
@@ -71,15 +70,13 @@ class AuthController extends StateNotifier<bool> {
           profilePic: '',
           uid: '',
           bioData: '',
-          isSubscribed: false);
- final res2 = await _userRepository.saveUserData(userModel);
+          isMentor: false);
+      final res2 = await _userRepository.saveUserData(userModel);
       res2.fold((l) => showSnackBar(context, l.message), (r) {
         showSnackBar(context, 'Accounted created! Please login.');
         login(email: email, password: password, context: context);
-         Navigator.of(context).push(AuthOTPPage.route());
+        //   Navigator.of(context).push(AuthOTPPage.route());
       });
-
-
     });
   }
 
@@ -96,8 +93,8 @@ class AuthController extends StateNotifier<bool> {
     state = false;
     res.fold(
       (l) => showSnackBar(context, l.message),
-      (r) {
-        Navigator.push(context, HomePage.route());
+      (r) async {
+        loginFlow(context);
       },
     );
   }
@@ -106,6 +103,21 @@ class AuthController extends StateNotifier<bool> {
     final document = await _userRepository.getUserData(uid);
     final updatedUser = UserModel.fromMap(document.data);
     return updatedUser;
+  }
+
+  void loginFlow(BuildContext context) async {
+    final _user = await _authRepository.currentUserAccount();
+
+    if (!context.mounted) return;
+    _user!.emailVerification
+        ? Navigator.push(
+            context,
+            HomePage.route(),
+          )
+        : Navigator.push(
+            context,
+            AuthOTPPage.route(),
+          );
   }
 
   void logout(BuildContext context) async {

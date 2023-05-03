@@ -20,6 +20,7 @@ abstract class IAuthRepository {
     required String password,
   });
   Future<User?> currentUserAccount();
+  FutureEitherVoid sendEmailCode();
   FutureEitherVoid logout();
 }
 
@@ -89,6 +90,23 @@ class AuthRepository implements IAuthRepository {
       await _account.deleteSession(
         sessionId: 'current',
       );
+      return right(null);
+    } on AppwriteException catch (e, stackTrace) {
+      return left(
+        Failure(e.message ?? 'Some unexpected error occurred', stackTrace),
+      );
+    } catch (e, stackTrace) {
+      return left(
+        Failure(e.toString(), stackTrace),
+      );
+    }
+  }
+
+  @override
+  FutureEitherVoid sendEmailCode() async{
+    try {
+      await _account.createVerification(
+          url: "");
       return right(null);
     } on AppwriteException catch (e, stackTrace) {
       return left(

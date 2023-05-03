@@ -11,7 +11,7 @@ import 'package:visionarymomma/features/onboarding/view/onboarding.dart';
 void main() {
   runApp(
   const  ProviderScope(
-      child: const MyApp(),
+      child: MyApp(),
     ),
   );
 }
@@ -40,7 +40,7 @@ class MyApp extends ConsumerWidget {
       home: ref.watch(currentUserAccountProvider).
           when(
         data: (user) {
-      if (user?.emailVerification != null) {
+      if (user?.emailVerification == false) {
     print(user?.emailVerification);
         return const AuthOTPPage();
       }
