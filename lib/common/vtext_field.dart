@@ -120,9 +120,7 @@ class VTextFieldState extends State<VTextField> {
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(100.0),
           borderSide: BorderSide(
-            color: stateIsError
-                ? ColorConstants.errorColor
-                : ColorConstants.textFieldBorder.withOpacity(0.4),
+            color: ColorConstants.textFieldBorder.withOpacity(0.4),
           ),
         ),
         focusedBorder: OutlineInputBorder(

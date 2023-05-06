@@ -9,7 +9,7 @@ class UserModel {
   final String country;
   final String state;
   final String city;
-  final String maternalStatus;
+  final bool maternalStatus;
   final String inviterCode;
   final String vmommaCode;
   final List<String> connections;
@@ -19,7 +19,7 @@ class UserModel {
   final String profilePic;
   final String uid;
   final String bioData;
-  final bool isSubscribed;
+  final bool isMentor;
   const UserModel({
     required this.email,
     required this.firstname,
@@ -38,7 +38,7 @@ class UserModel {
     required this.profilePic,
     required this.uid,
     required this.bioData,
-    required this.isSubscribed,
+    required this.isMentor,
   });
 
   // const UserModel(
@@ -51,7 +51,7 @@ class UserModel {
     String? country,
     String? state,
     String? city,
-    String? maternalStatus,
+    bool? maternalStatus,
     String? inviterCode,
     String? vmommaCode,
     List<String>? connections,
@@ -61,7 +61,7 @@ class UserModel {
     String? profilePic,
     String? uid,
     String? bioData,
-    bool? isSubscribed,
+    bool? isMentor,
   }) {
     return UserModel(
       email: email ?? this.email,
@@ -81,7 +81,7 @@ class UserModel {
       profilePic: profilePic ?? this.profilePic,
       uid: uid ?? this.uid,
       bioData: bioData ?? this.bioData,
-      isSubscribed: isSubscribed ?? this.isSubscribed,
+      isMentor: isMentor ?? this.isMentor,
     );
   }
 
@@ -105,7 +105,7 @@ class UserModel {
     result.addAll({'interests': interests});
     //  result.addAll({'uid': uid});
     result.addAll({'bioData': bioData});
-    result.addAll({'isSubscribed': isSubscribed});
+    result.addAll({'isMentor': isMentor});
 
     return result;
   }
@@ -122,20 +122,20 @@ class UserModel {
       city: map['city'] ?? '',
       maternalStatus: map['maternalStatus'] ?? '',
       inviterCode: map['inviterCode'] ?? '',
-      vmommaCode: map['vmommaCode'] ?? '',
+      vmommaCode: map['vmommaCode'] ?? false,
       connections: List<String>.from(map['connections']),
       connected: List<String>.from(map['connected']),
       interests: List<String>.from(map['interests']),
       numberOfKids: map['profilePic'] ?? 0,
       bioData: map['bioData'] ?? '',
       uid: map['\$id'] ?? '',
-      isSubscribed: map['isSubscribed'] ?? false,
+      isMentor: map['isMentor'] ?? false,
     );
   }
 
   @override
   String toString() {
-    return 'UserModel(email: $email, firstname: $firstname, lastname: $lastname, phonenumber: $phonenumber, country: $country, state: $state, city: $city, maternalStatus: $maternalStatus, inviterCode: $inviterCode, vmommaCode: $vmommaCode, connections: $connections, connected: $connected, numberOfKids: $numberOfKids, interests: $interests, profilePic: $profilePic, uid: $uid, bioData: $bioData, isSubscribed: $isSubscribed)';
+    return 'UserModel(email: $email, firstname: $firstname, lastname: $lastname, phonenumber: $phonenumber, country: $country, state: $state, city: $city, maternalStatus: $maternalStatus, inviterCode: $inviterCode, vmommaCode: $vmommaCode, connections: $connections, connected: $connected, numberOfKids: $numberOfKids, interests: $interests, profilePic: $profilePic, uid: $uid, bioData: $bioData, isMentor: $isMentor)';
   }
 
   @override
@@ -159,7 +159,7 @@ class UserModel {
         other.profilePic == profilePic &&
         other.uid == uid &&
         other.bioData == bioData &&
-        other.isSubscribed == isSubscribed;
+        other.isMentor == isMentor;
   }
 
   @override
@@ -181,6 +181,6 @@ class UserModel {
         profilePic.hashCode ^
         uid.hashCode ^
         bioData.hashCode ^
-        isSubscribed.hashCode;
+        isMentor.hashCode;
   }
 }

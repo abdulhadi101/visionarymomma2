@@ -10,8 +10,10 @@ import 'package:visionarymomma/features/onboarding/view/onboarding.dart';
 
 void main() {
   runApp(
-    const ProviderScope(
-      child: const MyApp(),
+
+  const  ProviderScope(
+      child: MyApp(),
+
     ),
   );
 }
@@ -30,20 +32,22 @@ class MyApp extends ConsumerWidget {
             BottomSheetThemeData(backgroundColor: Colors.black.withOpacity(0)),
         primarySwatch: Colors.blue,
       ),
-      // home: ref.watch(currentUserAccountProvider).when(
-      //       data: (user) {
-      //         if (user?.emailVerification != null) {
-      //           print(user?.emailVerification);
-      //           return const AuthOTPPage();
-      //         }
-      //         return const WelcomePage();
-      //       },
-      //       error: (error, st) => ErrorPage(
-      //         error: error.toString(),
-      //       ),
-      //       loading: () => const LoadingPage(),
-      //     ),
-      home: const HomePage(),
+
+      home: ref.watch(currentUserAccountProvider).
+          when(
+        data: (user) {
+      if (user?.emailVerification == false) {
+    print(user?.emailVerification);
+        return const AuthOTPPage();
+      }
+      return const WelcomePage();
+    },
+    error: (error, st) => ErrorPage(
+    error: error.toString(),
+    ),
+    loading: () => const LoadingPage(),
+    ),
+
     );
   }
 }

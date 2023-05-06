@@ -22,7 +22,7 @@ class SignUp extends ConsumerStatefulWidget {
 class _SignUpState extends ConsumerState<SignUp> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  bool isButtonEnabled = false;
+
 
   void onSignUp() {
  ref.read(authControllerProvider.notifier).signUp(
@@ -32,12 +32,7 @@ class _SignUpState extends ConsumerState<SignUp> {
 
   }
 
-  void onLogin() {
-    ref.read(authControllerProvider.notifier).login(
-        email: emailController.text,
-        password: passwordController.text,
-        context: context);
-  }
+
 
   @override
   void initState() {
@@ -57,12 +52,9 @@ class _SignUpState extends ConsumerState<SignUp> {
 
   late String errorText;
 
-
-
   bool _checkValidatorsOfTextField() {
-    if(ref.read(authControllerProvider.notifier).errorMessage != ""){
-
-      errorText = ref.read(authControllerProvider.notifier).errorMessage;
+    if(ref.read(authControllerProvider.notifier).errorMessage != "")
+    { errorText = ref.read(authControllerProvider.notifier).errorMessage;
       return true;
     }
 
