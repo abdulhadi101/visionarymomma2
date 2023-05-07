@@ -21,8 +21,12 @@ class SignIn extends ConsumerStatefulWidget {
 class _SignInState extends ConsumerState<SignIn> {
   final emailController = TextEditingController();
   final passwordController = TextEditingController();
-  bool isButtonEnabled = false;
 
+@override
+  void initState() {
+
+    super.initState();
+  }
   void onLogin() {
     ref.read(authControllerProvider.notifier).login(
         email: emailController.text,
@@ -37,11 +41,24 @@ class _SignInState extends ConsumerState<SignIn> {
     super.dispose();
   }
 
+  late String errorText;
+
   bool _checkValidatorsOfTextField() {
-    return ValidationService.email(emailController.text) &&
-        ValidationService.password(passwordController.text);
+    if(ref.read(authControllerProvider.notifier).errorMessage != ""){
+
+      errorText = ref.read(authControllerProvider.notifier).errorMessage;
+      return true;
+    }
+
+    errorText = TextConstants.emailErrorText;
+    return ! ValidationService.email(emailController.text);
+
+
   }
 
+  bool _checkValidatorsOfPasswordField() {
+    return ! ValidationService.password(passwordController.text);
+  }
   bool _checkIfSignInButtonEnabled() {
     return emailController.text.isNotEmpty &&
         passwordController.text.isNotEmpty;
@@ -85,10 +102,11 @@ class _SignInState extends ConsumerState<SignIn> {
                 keyboardType: TextInputType.emailAddress,
                 placeholder: TextConstants.emailPlaceholder,
                 controller: emailController,
+                isError: _checkValidatorsOfTextField(),
                 onTextChanged: () {
                   _checkValidatorsOfTextField();
                 },
-                errorText: TextConstants.emailErrorText,
+                errorText: errorText,
               ),
               const SizedBox(
                 height: 10,
@@ -96,6 +114,8 @@ class _SignInState extends ConsumerState<SignIn> {
               VTextField(
                 obscureText: true,
                 placeholder: TextConstants.password,
+                isError: _checkValidatorsOfPasswordField(),
+                isInfo: _checkValidatorsOfPasswordField(),
                 controller: passwordController,
                 onTextChanged: () {
                   _checkValidatorsOfTextField();
@@ -109,8 +129,12 @@ class _SignInState extends ConsumerState<SignIn> {
                 bgColor: ColorConstants.secondaryColor,
                 textColor: ColorConstants.white,
                 title: TextConstants.login,
-                onTap: () {},
-                isEnabled: _checkIfSignInButtonEnabled() ? true : false,
+                onTap: () {
+
+                  onLogin();
+
+                },
+
               ),
               const SizedBox(
                 height: 20,
