@@ -3,9 +3,9 @@ import 'package:visionarymomma/common/common.dart';
 import 'package:visionarymomma/const/constants.dart';
 
 class RegistrationTile extends StatelessWidget {
-  final title,  onClick, field;
+  final title,  onClick, field, skipButton;
 
-  const RegistrationTile({Key? key, this.field, this.onClick, this.title})
+  const RegistrationTile({Key? key, this.field, this.skipButton, this.onClick, this.title})
       : super(key: key);
 
   @override
@@ -50,12 +50,20 @@ class RegistrationTile extends StatelessWidget {
 
                     // isEnabled: _checkIfSignInButtonEnabled() ? true :false,
                     title: "Next",
-                    onTap: () {
-                    onClick;
+                    onTap:
+                    onClick,
 
-                    },
+
                   ),
                 ),
+
+                Align(
+                  alignment: Alignment.center,
+                  child: Container(
+                    child: skipButton,
+                  ),
+                )
+
               ],
             ),
             SizedBox(

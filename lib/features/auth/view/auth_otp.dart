@@ -5,7 +5,8 @@ import 'package:visionarymomma/common/vbuttons.dart';
 
 import 'package:visionarymomma/const/constants.dart';
 import 'package:visionarymomma/features/auth/controller/auth_controller.dart';
-import 'package:visionarymomma/features/auth/view/registration_page.dart';
+
+import 'package:visionarymomma/features/registration/view/registration_page.dart';
 
 
 
@@ -211,7 +212,9 @@ class _AuthOTPPageState extends   ConsumerState<AuthOTPPage> {
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 64.0),
                     child: PrimaryButtonWithIcon(title: "Continue", onTap: (){
-                      Navigator.pushReplacement(context, RegistrationPage.route());
+                      Navigator.pushReplacement(context,  MaterialPageRoute(
+                        builder: (context) => const RegistrationPage(initialPage: 0),
+                      ),);
                     },),
                   ),
                   const SizedBox(

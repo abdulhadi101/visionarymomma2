@@ -103,7 +103,7 @@ class UserModel {
     result.addAll({'connected': connected});
     result.addAll({'numberOfKids': numberOfKids});
     result.addAll({'interests': interests});
-    //  result.addAll({'uid': uid});
+   // result.addAll({'uid': uid});
     result.addAll({'bioData': bioData});
     result.addAll({'isMentor': isMentor});
 
@@ -120,13 +120,13 @@ class UserModel {
       country: map['country'] ?? '',
       state: map['state'] ?? '',
       city: map['city'] ?? '',
-      maternalStatus: map['maternalStatus'] ?? '',
+      maternalStatus: map['maternalStatus'] ?? false,
       inviterCode: map['inviterCode'] ?? '',
-      vmommaCode: map['vmommaCode'] ?? false,
+      vmommaCode: map['vmommaCode'] ?? '',
       connections: List<String>.from(map['connections']),
       connected: List<String>.from(map['connected']),
       interests: List<String>.from(map['interests']),
-      numberOfKids: map['profilePic'] ?? 0,
+      numberOfKids: map['numberOfKids'] ?? 0,
       bioData: map['bioData'] ?? '',
       uid: map['\$id'] ?? '',
       isMentor: map['isMentor'] ?? false,

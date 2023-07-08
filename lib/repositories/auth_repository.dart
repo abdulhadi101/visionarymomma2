@@ -46,9 +46,11 @@ class AuthRepository implements IAuthRepository {
   }) async {
     try {
       final account = await _account.create(
+
         userId: ID.unique(),
         email: email,
         password: password,
+
       );
       return right(account);
     } on AppwriteException catch (e, stackTrace) {
@@ -60,6 +62,46 @@ class AuthRepository implements IAuthRepository {
         Failure(e.toString(), stackTrace),
       );
     }
+  }
+
+
+  @override
+  FutureEitherVoid updatePrefs() async {
+    try {
+  await _account.updatePrefs(
+        prefs: {
+          'is_reg_done' : 'no',
+          'is_inviter_id_skipped' : 'no',
+          'is_biometric_skipped' : 'no',
+          'is_terms_condition_accepted' : 'no',
+          'is_interest_added' : 'no',
+          'is_profile_picture_added' : 'no',
+        },
+      );
+
+      return right(null);
+    } on AppwriteException catch (e, stackTrace) {
+      return left(
+        Failure(e.message ?? 'Some unexpected error occurred', stackTrace),
+      );
+    } catch (e, stackTrace) {
+      return left(
+        Failure(e.toString(), stackTrace),
+      );
+    }
+  }
+
+
+  @override
+  void getPrefs() async {
+    Future result = _account.getPrefs();
+
+    result
+        .then((response) {
+      print(response);
+    }).catchError((error) {
+      print(error.response);
+    });
   }
 
   @override
