@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_iconly/flutter_iconly.dart';
 import 'package:flutter_svg/svg.dart';
 
+import '../view/room_info.dart';
+
 class AppBarHome extends StatelessWidget {
   const AppBarHome({
     super.key,
@@ -36,10 +38,18 @@ class AppBarHome extends StatelessWidget {
           const SizedBox(
             width: 16,
           ),
-          CircleAvatar(
-            maxRadius: 18,
-            child: ClipOval(
-              child: Image.asset('assets/images/onboarding/momma1.png'),
+          GestureDetector(
+            onTap: () => Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => const RoomInfo(),
+              ),
+            ),
+            child: CircleAvatar(
+              maxRadius: 18,
+              child: ClipOval(
+                child: Image.asset('assets/images/onboarding/momma1.png'),
+              ),
             ),
           )
         ],

@@ -57,18 +57,18 @@ class _HomePageState extends State<HomePage> with TickerProviderStateMixin {
           child: TabBarView(
             controller: tabController,
             children: [
-              SingleChildScrollView(child: FeedScreen()),
+              FeedScreen(),
               Container(
                 color: Colors.green,
               )
             ],
           ),
         ),
-        // bottomSheet: Container(
-        //   height: size.height * 0.2,
-        //   color: Colors.white60,
-        //   child: FeedButton(),
-        // ),
+        bottomSheet: Container(
+          height: size.height * 0.2,
+          color: Colors.white60,
+          child: const FeedButton(),
+        ),
       ),
     );
   }
